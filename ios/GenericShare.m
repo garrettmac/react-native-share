@@ -80,15 +80,26 @@
           [self openScheme:URL];
         }
       }
-  }
-  - (void)openScheme:(NSString *)scheme {
-      UIApplication *application = [UIApplication sharedApplication];
-      NSURL *schemeURL = [NSURL URLWithString:scheme];
+}
 
-      if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
-          [application openURL:schemeURL options:@{} completionHandler:nil];
-          NSLog(@"Open %@: %d", schemeURL);
-      }
-  }
+- (void)openScheme:(NSString *)scheme {
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *schemeURL = [NSURL URLWithString:scheme];
 
-  @end
+    if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+        [application openURL:schemeURL options:@{} completionHandler:nil];
+        NSLog(@"Open %@: %d", schemeURL);
+    }
+}
+
+- (void)isAvailableForServiceType: (NSString *)serviceType
+                  failureCallback: (RCTResponseErrorBlock)failureCallback
+                  successCallback: (RCTResponseSenderBlock)successCallback {
+    if ([SLComposeViewController isAvailableForServiceType:serviceType]) {
+        successCallback(@[]);
+    } else {
+        failureCallback(RCTErrorWithMessage(@""));
+    }
+}
+
+@end

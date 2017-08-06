@@ -56,7 +56,6 @@ RCT_EXPORT_METHOD(shareSingle:(NSDictionary *)options
                   failureCallback:(RCTResponseErrorBlock)failureCallback
                   successCallback:(RCTResponseSenderBlock)successCallback)
 {
-    
     NSString *social = [RCTConvert NSString:options[@"social"]];
     if (social) {
         NSLog(social);
@@ -74,7 +73,7 @@ RCT_EXPORT_METHOD(shareSingle:(NSDictionary *)options
             [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback];
         } else if([social isEqualToString:@"whatsapp"]) {
             NSLog(@"TRY OPEN whatsapp");
-            
+
             WhatsAppShare *shareCtl = [[WhatsAppShare alloc] init];
             [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback];
         } else if([social isEqualToString:@"email"]) {
@@ -85,6 +84,27 @@ RCT_EXPORT_METHOD(shareSingle:(NSDictionary *)options
     } else {
         RCTLogError(@"No exists social key");
         return;
+    }
+}
+
+RCT_EXPORT_METHOD(isAvailableForServiceType:(NSString *)serviceType
+                  failureCallback:(RCTResponseErrorBlock)failureCallback
+                  successCallback:(RCTResponseSenderBlock)successCallback)
+{
+    NSLog(serviceType);
+    if ([serviceType isEqualToString:@"facebook"]) {
+        GenericShare *shareCtl = [[GenericShare alloc] init];
+        [shareCtl isAvailableForServiceType: SLServiceTypeFacebook
+                            failureCallback: failureCallback
+                            successCallback: successCallback];
+
+    } else if ([serviceType isEqualToString:@"twitter"]) {
+        GenericShare *shareCtl = [[GenericShare alloc] init];
+        [shareCtl isAvailableForServiceType: SLServiceTypeTwitter
+                            failureCallback: failureCallback
+                            successCallback: successCallback];
+    } else {
+        failureCallback(RCTErrorWithMessage(@""));
     }
 }
 

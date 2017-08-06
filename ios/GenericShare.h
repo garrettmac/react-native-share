@@ -52,4 +52,6 @@
 @interface GenericShare : NSObject <RCTBridgeModule>
 
 - (void *) shareSingle:(NSDictionary *)options failureCallback:(RCTResponseErrorBlock)failureCallback successCallback:(RCTResponseSenderBlock)successCallback serviceType:(NSString*)serviceType;
+- (void *) isAvailableForServiceType:(NSString *)serviceType failureCallback:(RCTResponseErrorBlock)failureCallback successCallback:(RCTResponseSenderBlock)successCallback;
+
 @end

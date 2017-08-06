@@ -62,9 +62,7 @@ class RNShare {
         NativeModules.RNShare.shareSingle(options,(e) => {
           return reject({ error: e });
         },(e) => {
-          return resolve({
-            message: e
-          });
+          return resolve(e);
         });
       });
     } else {

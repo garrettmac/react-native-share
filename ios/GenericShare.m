@@ -43,10 +43,23 @@
             [composeController setInitialText:text];
         }
 
+        [composeController setCompletionHandler:^(SLComposeViewControllerResult result) {
+          switch (result) {
+            case SLComposeViewControllerResultCancelled:
+              successCallback(@[@{ @"shared": @NO }]);
+              break;
+            case SLComposeViewControllerResultDone:
+              successCallback(@[@{ @"shared": @YES }]);
+              break;
+
+            default:
+              successCallback(@[@{ @"shared": @NO }]);
+              break;
+          }
+        }];
 
         UIViewController *ctrl = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
         [ctrl presentViewController:composeController animated:YES completion:Nil];
-        successCallback(@[]);
       } else {
         NSString *errorMessage = @"Not installed";
         NSDictionary *userInfo = @{NSLocalizedFailureReasonErrorKey: NSLocalizedString(errorMessage, nil)};
@@ -66,7 +79,6 @@
           NSString *URL = [NSString stringWithFormat:@"https://www.facebook.com/sharer/sharer.php?u=%@", options[@"url"]];
           [self openScheme:URL];
         }
-
       }
   }
   - (void)openScheme:(NSString *)scheme {
@@ -77,7 +89,6 @@
           [application openURL:schemeURL options:@{} completionHandler:nil];
           NSLog(@"Open %@: %d", schemeURL);
       }
-
   }
 
   @end

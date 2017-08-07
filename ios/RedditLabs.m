@@ -1,10 +1,11 @@
-#import "ShareViewController.h"
-#import "ItemViewController.h"
-@interface ShareViewController ()
+//#import "ShareViewController.h"
+//#import "ItemViewController.h"
+// @interface ShareViewController ()
+#import "RedditLabs.h"
 
-@end
-SLComposeSheetConfigurationItem *item;
-ItemViewController *vc;
+//@end
+//SLComposeSheetConfigurationItem *item;
+//ItemViewController *vc;
 // @implementation ShareViewController
 @implementation RedditLabs
 - (void)shareSingle:(NSDictionary *)options
@@ -93,6 +94,14 @@ ItemViewController *vc;
 
         if ([[UIApplication sharedApplication] canOpenURL: gplusURL]) {
             [[UIApplication sharedApplication] openURL:gplusURL];
+            
+            
+            
+                    NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"com.reddit.reddit"];
+                [defaults setObject:dict forKey:@"img"];
+                [defaults synchronize];
+            
+            
             successCallback(@[]);
         } else {
             // Cannot open gplus

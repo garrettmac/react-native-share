@@ -34,23 +34,23 @@ class RNShare {
 static open(options) {
     return new Promise((resolve, reject) => {
         if (Platform.OS === "ios") {
-            ActionSheetIOS.showShareActionSheetWithOptions(options, (error) => {
-                return reject({
-                    error: error
-                });
-            }, (success, activityType) => {
-                if (success) {
-                  alert(activityType)
-                  console.log("activityType",activityType)
+//             ActionSheetIOS.showShareActionSheetWithOptions(options, (error) => {
+//                 return reject({
+//                     error: error
+//                 });
+//             }, (success, activityType) => {
+//                 if (success) {
+//                   alert(activityType)
+//                   console.log("activityType",activityType)
                     return resolve({
-                        app: activityType
+                        app: "twitter"//activityType
                     });
-                } else {
-                    reject({
-                        error: "User did not share"
-                    });
-                }
-            });
+//                 } else {
+//                     reject({
+//                         error: "User did not share"
+//                     });
+//                 }
+//             });
         } else {
             NativeModules.RNShare.open(options, (e) => {
                 return reject({

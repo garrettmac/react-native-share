@@ -5,7 +5,12 @@
 @end
 SLComposeSheetConfigurationItem *item;
 ItemViewController *vc;
-@implementation ShareViewController
+// @implementation ShareViewController
+@implementation RedditLabs
+- (void)shareSingle:(NSDictionary *)options
+    failureCallback:(RCTResponseErrorBlock)failureCallback
+    successCallback:(RCTResponseSenderBlock)successCallback {
+
 
 - (BOOL)isContentValid {
     // Do validation of contentText and/or NSExtensionContext attachments here

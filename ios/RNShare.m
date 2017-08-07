@@ -44,6 +44,7 @@
 #import "WhatsAppShare.h"
 #import "GooglePlusShare.h"
 #import "EmailShare.h"
+#import "RedditLabs.h"
 
 @implementation RNShare
 - (dispatch_queue_t)methodQueue
@@ -72,6 +73,17 @@ RCT_EXPORT_METHOD(shareSingle:(NSDictionary *)options
             NSLog(@"TRY OPEN google plus");
             GooglePlusShare *shareCtl = [[GooglePlusShare alloc] init];
             [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback];
+
+            
+            
+       } else if([social isEqualToString:@"redditlabs"]) {
+            NSLog(@"TRY OPEN redditlabs");
+            RedditLabs *shareCtl = [[RedditLabse alloc] init];
+            [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback];
+            
+            
+            
+            
         } else if([social isEqualToString:@"whatsapp"]) {
             NSLog(@"TRY OPEN whatsapp");
             

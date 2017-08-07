@@ -82,6 +82,12 @@ RCT_EXPORT_METHOD(shareSingle:(NSDictionary *)options
             [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback];
             
             
+} else if([social isEqualToString:@"generic"]) {
+            NSLog(@"TRY OPEN Generic");
+            GenericShare *shareCtl = [[GenericShare alloc] init];
+            [shareCtl shareSingle:options failureCallback: failureCallback successCallback: successCallback];
+       
+            
             
             
         } else if([social isEqualToString:@"whatsapp"]) {

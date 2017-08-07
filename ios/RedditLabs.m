@@ -12,6 +12,8 @@ ItemViewController *vc;
     successCallback:(RCTResponseSenderBlock)successCallback {
 
 
+
+        
 - (BOOL)isContentValid {
     // Do validation of contentText and/or NSExtensionContext attachments here
     return YES;
@@ -72,4 +74,28 @@ ItemViewController *vc;
 }
 
 
-@end
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                   if ([options objectForKey:@"url"] && [options objectForKey:@"url"] != [NSNull null]) {
+//        NSString *url = [NSString stringWithFormat:@"https://plus.google.com/share?url=%@", options[@"url"]];
+ NSString *url = [NSString stringWithFormat:@"https://www.reddit.com/api/submit?api_type=json&kind=link&title=RNPagination&sr=test&url=%@", options[@"url"]];
+//                  https://github.com/garrettmac/react-native-pagination
+
+        NSURL *gplusURL = [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+        if ([[UIApplication sharedApplication] canOpenURL: gplusURL]) {
+            [[UIApplication sharedApplication] openURL:gplusURL];
+            successCallback(@[]);
+        } else {
+            // Cannot open gplus
+            NSLog(@"error web intent");
+        }
+    }

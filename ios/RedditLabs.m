@@ -19,6 +19,7 @@
     // Do validation of contentText and/or NSExtensionContext attachments here
     return YES;
 }
+    
 - (void)didSelectPost {
     
     for (NSItemProvider* itemProvider in ((NSExtensionItem*)self.extensionContext.inputItems[0]).attachments ) {
@@ -40,7 +41,7 @@
                                        @"imgData" : imgData,
                                        @"name" : self.contentText
                                        };
-                NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.containingapp"];
+                NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.redditlabs.redditlabs"];
                 [defaults setObject:dict forKey:@"img"];
                 [defaults synchronize];
             }];
